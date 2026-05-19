@@ -46,7 +46,7 @@ export default async function RoomPage({
   return (
     <>
       <Header />
-      <main>
+      <main id="main-content">
         {/* Hero */}
         <section className="relative isolate min-h-[80svh] w-full overflow-hidden grain">
           <Image

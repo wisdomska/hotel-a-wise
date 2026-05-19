@@ -21,14 +21,14 @@ export function Footer({ contact }: { contact: ContactInfo }) {
             <h2 className="mt-5 font-display text-4xl leading-[1.1] text-cream-50 md:text-5xl lg:text-[3.5rem]">
               Plan a stay with us.
             </h2>
-            <p className="mt-6 max-w-md text-cream-100/75">
+            <p className="mt-6 max-w-md text-cream-100/85">
               Tell us your dates and the kind of stay you’re imagining — we’ll get back to you
               within one business day with a curated recommendation.
             </p>
 
             <div className="mt-10 space-y-5 text-sm">
               <div>
-                <div className="text-[11px] uppercase tracking-[0.22em] text-cream-100/55">Address</div>
+                <div className="text-[11px] uppercase tracking-[0.22em] text-cream-100/85">Address</div>
                 <div className="mt-1 text-cream-100/85">{contact.address}</div>
                 {contact.maps_link && (
                   <a
@@ -42,13 +42,13 @@ export function Footer({ contact }: { contact: ContactInfo }) {
                 )}
               </div>
               <div>
-                <div className="text-[11px] uppercase tracking-[0.22em] text-cream-100/55">Phone</div>
+                <div className="text-[11px] uppercase tracking-[0.22em] text-cream-100/85">Phone</div>
                 <a href={`tel:${contact.phone.replace(/[^+\d]/g, "")}`} className="mt-1 block text-cream-100/85 hover:text-gold-300">
                   {contact.phone}
                 </a>
               </div>
               <div>
-                <div className="text-[11px] uppercase tracking-[0.22em] text-cream-100/55">Email</div>
+                <div className="text-[11px] uppercase tracking-[0.22em] text-cream-100/85">Email</div>
                 <a href={`mailto:${contact.email}`} className="mt-1 block text-cream-100/85 hover:text-gold-300">
                   {contact.email}
                 </a>
@@ -79,7 +79,7 @@ export function Footer({ contact }: { contact: ContactInfo }) {
             Book your stay
           </Button>
         </div>
-        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-cream-100/15 pt-6 text-[11px] uppercase tracking-[0.25em] text-cream-100/45">
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-cream-100/15 pt-6 text-[11px] uppercase tracking-[0.25em] text-cream-100/70">
           <span>{contact.copyright_text}</span>
           <span>Designed with care · Accra</span>
         </div>
