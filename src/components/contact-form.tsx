@@ -98,7 +98,7 @@ export function ContactForm({ defaultRoomSlug }: { defaultRoomSlug?: string }) {
 }
 
 const inputBase =
-  "h-12 w-full bg-transparent border-b border-cream-100/30 px-0 text-[15px] text-cream-50 placeholder:text-cream-100/45 " +
+  "h-12 w-full bg-transparent border-b border-cream-100/45 px-0 text-[15px] text-cream-50 placeholder:text-cream-100/65 " +
   "transition-colors focus:border-gold-400 focus:outline-none";
 
 function Labelled({
@@ -114,12 +114,12 @@ function Labelled({
 }) {
   return (
     <label className="block">
-      <span className="flex items-center justify-between pb-2 text-[11px] uppercase tracking-[0.22em] text-cream-100/60">
+      <span className="flex items-center justify-between pb-2 text-[11px] uppercase tracking-[0.22em] text-cream-100/85">
         <span>
           {label}
           {required && <span className="ml-1 text-gold-300">*</span>}
         </span>
-        {hint && <span className="text-cream-100/40">{hint}</span>}
+        {hint && <span className="text-cream-100/70">{hint}</span>}
       </span>
       {children}
     </label>

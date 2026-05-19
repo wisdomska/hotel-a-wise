@@ -14,7 +14,7 @@ export default async function HomePage() {
   return (
     <>
       <Header />
-      <main>
+      <main id="main-content">
         <Hero data={content.hero} />
         <Welcome />
         <AmenitiesMarquee items={content.amenities} />

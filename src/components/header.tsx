@@ -43,7 +43,7 @@ export function Header() {
           Hotel <span className="text-gold-400">A-Wise</span>
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
           {navLinks.map((l) => (
             <Link
               key={l.href}
@@ -65,14 +65,16 @@ export function Header() {
         </div>
 
         <button
-          aria-label="Menu"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          aria-controls="mobile-menu"
           onClick={() => setOpen((o) => !o)}
           className={cn(
-            "md:hidden flex h-10 w-10 items-center justify-center",
+            "md:hidden flex h-11 w-11 items-center justify-center",
             scrolled ? "text-ink-900" : "text-cream-50"
           )}
         >
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden>
             {open ? (
               <path d="M6 6l12 12M6 18L18 6" strokeLinecap="round" />
             ) : (
@@ -86,8 +88,8 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="md:hidden border-t border-[var(--color-border)] bg-cream-50">
-          <div className="container-wide flex flex-col gap-4 py-6">
+        <div id="mobile-menu" className="md:hidden border-t border-[var(--color-border)] bg-cream-50">
+          <nav aria-label="Mobile" className="container-wide flex flex-col gap-4 py-6">
             {navLinks.map((l) => (
               <Link
                 key={l.href}
@@ -99,7 +101,7 @@ export function Header() {
               </Link>
             ))}
             <Button href="#rooms" className="mt-2 self-start">Book Your Stay</Button>
-          </div>
+          </nav>
         </div>
       )}
     </header>
