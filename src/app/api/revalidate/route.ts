@@ -1,4 +1,4 @@
-import { revalidatePath, revalidateTag } from "next/cache";
+import { revalidatePath } from "next/cache";
 import { NextResponse, type NextRequest } from "next/server";
 
 /**
@@ -7,7 +7,7 @@ import { NextResponse, type NextRequest } from "next/server";
  * Called by the CMS after a content edit to purge ISR caches.
  * Authenticated via shared secret — header `x-revalidate-secret`.
  *
- * Body (optional): { paths?: string[]; tags?: string[] }
+ * Body (optional): { paths?: string[] }
  */
 export async function POST(req: NextRequest) {
   const secret = req.headers.get("x-revalidate-secret");
@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: false, error: "Unauthorised" }, { status: 401 });
   }
 
-  let body: { paths?: string[]; tags?: string[] } = {};
+  let body: { paths?: string[] } = {};
   try {
     body = await req.json();
   } catch {
@@ -31,12 +31,9 @@ export async function POST(req: NextRequest) {
   }
 
   const paths = body.paths?.length ? body.paths : ["/"];
-  const tags = body.tags ?? [];
-
   for (const p of paths) revalidatePath(p);
-  for (const t of tags) revalidateTag(t);
 
-  return NextResponse.json({ ok: true, revalidated: { paths, tags } });
+  return NextResponse.json({ ok: true, revalidated: { paths } });
 }
 
 export async function GET() {
