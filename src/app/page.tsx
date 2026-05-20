@@ -5,6 +5,7 @@ import { AmenitiesMarquee } from "@/components/sections/amenities-marquee";
 import { ComingSoon } from "@/components/sections/coming-soon";
 import { Reception } from "@/components/sections/reception";
 import { Rooms } from "@/components/sections/rooms";
+import { FooterCTA } from "@/components/sections/footer-cta";
 import { Footer } from "@/components/footer";
 import { getLandingContent } from "@/lib/content";
 
@@ -21,6 +22,7 @@ export default async function HomePage() {
         <ComingSoon items={content.comingSoon} />
         <Reception testimonial={content.featuredTestimonial} />
         <Rooms rooms={content.rooms} />
+        <FooterCTA />
       </main>
       <Footer contact={content.contact} />
     </>

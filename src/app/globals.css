@@ -1,52 +1,54 @@
 @import "tailwindcss";
 
 /* -----------------------------------------------------------------------------
- * Hotel A-Wise — Design System
+ * Hotel A-Wise — Framer-matched design system
+ *
+ * Palette: cool off-white base, deep navy accent, warm cream section bgs,
+ * near-black text, near-black hero overlay.
+ *
+ * Typography: Newsreader (closest open replacement for Zodiak — light 300,
+ * tight negative tracking) for display; DM Sans (closest to Hedvig Letters
+ * Sans) for body. Swap to actual Zodiak/Hedvig from Pangram Pangram for
+ * production licence.
  * --------------------------------------------------------------------------- */
 
 @theme inline {
-  /* Brand palette */
-  --color-cream-50:  #faf8f4;
-  --color-cream-100: #f4efe5;
-  --color-cream-200: #ebe2d2;
-  --color-cream-300: #d8c8ad;
-  --color-cream-400: #b7a07d;
-  --color-cream-500: #9b8463;
+  /* Base palette */
+  --color-bone:        #f9fdfe;   /* page background (cool off-white) */
+  --color-bone-2:      #f1f6f8;
+  --color-cream:       #faf2e6;   /* warm section background */
+  --color-cream-soft:  #fff8e6;
+  --color-ink:         #1e1e1e;   /* primary text */
+  --color-ink-soft:    #4a4a4a;
+  --color-ink-mute:    #6b6b6b;
+  --color-line:        #e3ddd1;   /* hairline border on cream */
+  --color-line-cool:   #dde6e9;
+  --color-paper:       #ffffff;
 
-  --color-ink-50:  #f6f4ef;
-  --color-ink-100: #e5e1d6;
-  --color-ink-300: #908778;
-  --color-ink-500: #5a5247;
-  --color-ink-700: #2e2925;
-  --color-ink-900: #1a1612;
-  --color-ink-950: #0e0c0a;
+  /* Brand accent */
+  --color-navy:        #000063;   /* primary accent — buttons, links, accents */
+  --color-navy-2:      #0000ee;   /* hover / link tone */
+  --color-night:       #00030d;   /* gradient terminus / dark sections */
+  --color-night-2:     #060a18;
 
-  --color-gold-50:  #fbf6ec;
-  --color-gold-100: #f3e6c4;
-  --color-gold-200: #e6cf94;
-  --color-gold-300: #d4b269;
-  --color-gold-400: #c19a4a;
-  --color-gold-500: #a87f37;
-  --color-gold-600: #8a652b;
-  --color-gold-700: #6b4f23;
+  /* Semantic tokens */
+  --color-background:         var(--color-bone);
+  --color-foreground:         var(--color-ink);
+  --color-muted:              var(--color-ink-mute);
+  --color-accent:             var(--color-navy);
+  --color-accent-foreground:  #ffffff;
 
-  --color-forest-500: #2c3e36;
-  --color-forest-700: #1f2c26;
+  /* Typography stacks */
+  --font-display: var(--font-newsreader), "Zodiak", "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-sans:    var(--font-dm-sans), "Hedvig Letters Sans", "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
 
-  --color-background: var(--color-cream-50);
-  --color-foreground: var(--color-ink-900);
-  --color-muted:      var(--color-ink-500);
-  --color-subtle:     var(--color-cream-100);
-  --color-border:     #e3dccd;
-  --color-accent:     var(--color-gold-500);
-  --color-accent-foreground: var(--color-cream-50);
+  /* Layout */
+  --pad-section: clamp(40px, 6vw, 96px);
+  --radius-pill: 100px;
+  --radius-card: 14px;
 
-  --font-display: var(--font-cormorant), ui-serif, Georgia, serif;
-  --font-sans:    var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
-
-  --spacing-section: 6rem;
-  --radius-card: 0.5rem;
-  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft:  cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-power: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 @layer base {
@@ -62,49 +64,50 @@
     background: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
-    font-feature-settings: "ss01", "cv11";
+    font-size: 17px;
+    line-height: 1.55;
+    font-feature-settings: "ss01";
   }
 
   ::selection {
-    background: var(--color-gold-200);
-    color: var(--color-ink-900);
+    background: var(--color-navy);
+    color: #ffffff;
   }
 
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    font-weight: 500;
-    letter-spacing: -0.01em;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
   }
 
-  /* Consistent visible focus ring for all interactive elements */
+  /* Consistent visible focus across interactive elements */
   a:focus-visible,
   button:focus-visible,
   [role="button"]:focus-visible,
   input:focus-visible,
   textarea:focus-visible,
   select:focus-visible {
-    outline: 2px solid var(--color-gold-400);
-    outline-offset: 2px;
-    border-radius: 2px;
+    outline: 2px solid var(--color-navy);
+    outline-offset: 3px;
+    border-radius: 4px;
   }
 
-  /* Skip-to-content — visually hidden until focused */
   .skip-link {
     position: absolute;
     left: -9999px;
     top: 0;
     z-index: 100;
-    background: var(--color-ink-900);
-    color: var(--color-cream-50);
+    background: var(--color-ink);
+    color: #ffffff;
     padding: 0.75rem 1.25rem;
     font-size: 0.875rem;
-    font-weight: 500;
     border-radius: 0 0 0.5rem 0;
   }
   .skip-link:focus,
   .skip-link:focus-visible {
     left: 0;
-    outline: 2px solid var(--color-gold-400);
+    outline: 2px solid var(--color-navy);
     outline-offset: -2px;
   }
 
@@ -113,55 +116,58 @@
 }
 
 @layer utilities {
-  .container-wide {
+  .container-x {
     margin-inline: auto;
-    max-width: 80rem;
-    padding-inline: 1.5rem;
-  }
-  @media (min-width: 768px) {
-    .container-wide { padding-inline: 2.5rem; }
+    width: 100%;
+    max-width: 1408px;
+    padding-inline: clamp(20px, 4vw, 64px);
   }
 
-  .grain { position: relative; isolation: isolate; }
-  .grain::after {
+  .section-y {
+    padding-block: var(--pad-section);
+  }
+
+  /* Pill button — Framer-style stroke */
+  .btn-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: transform 0.5s var(--ease-soft), background-color 0.4s var(--ease-soft), color 0.4s var(--ease-soft), border-color 0.4s var(--ease-soft);
+  }
+  .btn-pill:hover {
+    transform: translateY(-1px);
+  }
+
+  /* Eyebrow lockup (small label above h2) */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-navy);
+  }
+  .eyebrow::before {
     content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.35'/></svg>");
-    mix-blend-mode: overlay;
-    opacity: 0.18;
-    z-index: 1;
+    width: 28px;
+    height: 1px;
+    background: currentColor;
   }
-
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
-  .animate-marquee { animation: marquee 40s linear infinite; }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.8s var(--ease-soft), transform 0.8s var(--ease-soft);
-  }
-  .reveal.is-visible { opacity: 1; transform: none; }
 }
 
-/* Respect user motion preferences */
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-
-  .animate-marquee {
-    animation: none !important;
-  }
-
-  .grain::after { display: none; }
 }
