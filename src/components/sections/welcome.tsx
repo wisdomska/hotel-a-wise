@@ -1,56 +1,73 @@
 import Image from "next/image";
+import { Reveal } from "@/components/motion/reveal";
 
 const images = [
   {
-    src: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1100&q=80",
-    alt: "Elegant hotel room interior",
-    className: "row-span-2 aspect-[3/4]",
+    src: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1100&q=85",
+    alt: "Suite interior at Hotel A-Wise",
+    aspect: "aspect-[3/4]",
   },
   {
-    src: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1100&q=80",
-    alt: "Conference room",
-    className: "aspect-[4/3]",
+    src: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1100&q=85",
+    alt: "Conference space",
+    aspect: "aspect-[4/5]",
   },
   {
-    src: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1100&q=80",
-    alt: "Premium bathroom finishes",
-    className: "aspect-[4/3]",
+    src: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1100&q=85",
+    alt: "Bathroom finishes",
+    aspect: "aspect-[3/4]",
   },
 ];
 
 export function Welcome() {
   return (
-    <section id="welcome" className="bg-cream-50 py-24 md:py-32">
-      <div className="container-wide grid gap-16 lg:grid-cols-[5fr_7fr] lg:gap-24">
-        <div className="lg:sticky lg:top-32 lg:self-start">
-          <p className="text-xs uppercase tracking-[0.3em] text-gold-600">A warm welcome</p>
-          <h2 className="mt-5 font-display text-4xl leading-[1.1] text-ink-900 md:text-5xl lg:text-[3.5rem]">
-            Welcome to the world of <em className="not-italic text-gold-600">affordable luxury</em> and comfort.
-          </h2>
-          <p className="mt-8 max-w-md text-base leading-relaxed text-ink-500 md:text-[17px]">
-            Experience a stay where indulgence has no ceiling and your every wish is anticipated.
-            Join us in redefining hospitality — a place where comfort and elegance are inseparable.
-          </p>
-          <p className="mt-4 max-w-md text-base leading-relaxed text-ink-500 md:text-[17px]">
-            Welcome to a journey of quiet elegance. Welcome to your extraordinary escape.
-          </p>
-        </div>
+    <section className="bg-[var(--color-cream)] section-y">
+      <div className="container-x">
+        <Reveal>
+          <p className="eyebrow">A warm welcome</p>
+        </Reveal>
 
-        <div className="grid grid-cols-2 gap-4">
-          {images.map((img, i) => (
-            <div
-              key={i}
-              className={`relative overflow-hidden rounded-[var(--radius-card)] bg-cream-200 ${img.className}`}
-            >
-              <Image
-                src={img.src}
-                alt={img.alt}
-                fill
-                sizes="(min-width: 1024px) 30vw, 50vw"
-                className="object-cover transition-transform duration-[1.6s] ease-[var(--ease-soft)] hover:scale-105"
-              />
+        <Reveal delay={0.05}>
+          <h2
+            className="mt-6 max-w-[18ch] text-[var(--color-ink)]"
+            style={{ fontSize: "clamp(34px, 5vw, 78px)", letterSpacing: "-0.02em", lineHeight: 1.05 }}
+          >
+            Welcome to the world of <em className="not-italic">affordable luxury</em> and comfort.
+          </h2>
+        </Reveal>
+
+        <div className="mt-12 grid items-start gap-10 md:grid-cols-[5fr_7fr] md:gap-16">
+          <Reveal delay={0.1}>
+            <div className="max-w-md space-y-4 text-[var(--color-ink-soft)] text-[16px] md:text-[17px] leading-relaxed">
+              <p>
+                Experience a stay like no other, where indulgence knows no bounds and your every
+                desire is our priority. Join us in redefining the art of hospitality.
+              </p>
+              <p>
+                Let us pamper you in a world where luxury and comfort intertwine seamlessly —
+                welcome to your extraordinary escape.
+              </p>
             </div>
-          ))}
+          </Reveal>
+
+          <Reveal delay={0.15}>
+            <div className="grid grid-cols-3 gap-3 md:gap-4">
+              {images.map((img, i) => (
+                <div
+                  key={i}
+                  className={`relative overflow-hidden rounded-[var(--radius-card)] bg-[var(--color-line)] ${img.aspect}`}
+                >
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    fill
+                    sizes="(min-width: 1024px) 22vw, 33vw"
+                    className="object-cover transition-transform duration-[1.4s] ease-[var(--ease-soft)] hover:scale-105"
+                  />
+                </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>

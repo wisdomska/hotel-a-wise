@@ -1,18 +1,20 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Newsreader, DM_Sans } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+const display = Newsreader({
   subsets: ["latin"],
+  weight: ["300", "400", "500"],
+  style: ["normal", "italic"],
   display: "swap",
-  variable: "--font-inter",
+  variable: "--font-newsreader",
 });
 
-const cormorant = Cormorant_Garamond({
+const sans = DM_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   display: "swap",
-  variable: "--font-cormorant",
+  variable: "--font-dm-sans",
 });
 
 export const metadata: Metadata = {
@@ -22,10 +24,10 @@ export const metadata: Metadata = {
     template: "%s | Hotel A-Wise",
   },
   description:
-    "Experience exquisite accommodations, premium amenities, and warm service at Hotel A-Wise — your gateway to unforgettable memories in Accra.",
+    "Experience exquisite accommodations, premium amenities and great service tailored to exceed your expectations — at a refreshingly affordable price.",
   openGraph: {
     title: "Hotel A-Wise",
-    description: "Affordable luxury and comfort in Accra. Book your stay at Hotel A-Wise.",
+    description: "Affordable luxury and comfort in Accra.",
     url: "https://hotel-a-wise.vercel.app",
     siteName: "Hotel A-Wise",
     locale: "en_GB",
@@ -34,14 +36,14 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Hotel A-Wise",
-    description: "Affordable luxury and comfort in Accra. Book your stay at Hotel A-Wise.",
+    description: "Affordable luxury and comfort in Accra.",
   },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${cormorant.variable}`}>
-      <body className="antialiased">
+    <html lang="en" className={`${display.variable} ${sans.variable}`}>
+      <body>
         <a href="#main-content" className="skip-link">Skip to main content</a>
         {children}
       </body>

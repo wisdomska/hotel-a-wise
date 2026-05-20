@@ -15,7 +15,6 @@ export function ContactForm({ defaultRoomSlug }: { defaultRoomSlug?: string }) {
 
   return (
     <form ref={formRef} action={formAction} className="space-y-5" noValidate>
-      {/* honeypot */}
       <div aria-hidden className="absolute left-[-9999px] top-[-9999px] h-0 w-0 overflow-hidden">
         <label htmlFor="website">Website</label>
         <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
@@ -43,7 +42,7 @@ export function ContactForm({ defaultRoomSlug }: { defaultRoomSlug?: string }) {
           rows={5}
           maxLength={2000}
           placeholder="Dates, party size, anything we should know — we'll get back to you within a business day."
-          className={cn(inputBase, "min-h-[140px] py-3")}
+          className={cn(inputBase, "min-h-[140px] py-3 leading-relaxed")}
         />
       </Labelled>
 
@@ -54,8 +53,8 @@ export function ContactForm({ defaultRoomSlug }: { defaultRoomSlug?: string }) {
           className={cn(
             "rounded-md border px-4 py-3 text-sm",
             state.ok
-              ? "border-gold-300/40 bg-gold-300/10 text-gold-200"
-              : "border-[#b3261e] bg-[#3a1715] text-[#fda4a0]"
+              ? "border-[var(--color-navy)] bg-[var(--color-cream-soft)] text-[var(--color-ink)]"
+              : "border-[#b3261e] bg-[#fce8e6] text-[#b3261e]"
           )}
         >
           {state.message}
@@ -64,7 +63,7 @@ export function ContactForm({ defaultRoomSlug }: { defaultRoomSlug?: string }) {
 
       <div className="flex flex-wrap items-center gap-4 pt-2">
         <SubmitButton />
-        <p className="text-xs uppercase tracking-[0.22em] text-cream-100/70">
+        <p className="text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-mute)]">
           We reply within a business day
         </p>
       </div>
@@ -80,9 +79,9 @@ function SubmitButton() {
       disabled={pending}
       aria-disabled={pending}
       className={cn(
-        "inline-flex h-14 items-center justify-center gap-2 bg-cream-50 px-8 text-sm font-medium tracking-wide text-ink-900",
-        "transition-all duration-200 hover:bg-cream-100 active:bg-cream-200",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-300 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950",
+        "btn-pill h-[60px] bg-[var(--color-navy)] px-8 text-[14px] font-medium text-white",
+        "hover:bg-[var(--color-navy-2)]",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-navy)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bone)]",
         pending && "cursor-progress opacity-70"
       )}
     >
@@ -107,8 +106,8 @@ function SubmitButton() {
 }
 
 const inputBase =
-  "h-12 w-full bg-transparent border-b border-cream-100/45 px-0 text-[15px] text-cream-50 placeholder:text-cream-100/65 " +
-  "transition-colors focus:border-gold-400 focus:outline-none";
+  "h-12 w-full bg-transparent border-b border-[var(--color-line)] px-0 text-[15px] text-[var(--color-ink)] placeholder:text-[var(--color-ink-mute)] " +
+  "transition-colors focus:border-[var(--color-navy)] focus:outline-none";
 
 function Labelled({
   label,
@@ -123,12 +122,12 @@ function Labelled({
 }) {
   return (
     <label className="block">
-      <span className="flex items-center justify-between pb-2 text-[11px] uppercase tracking-[0.22em] text-cream-100/85">
+      <span className="flex items-center justify-between pb-2 text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink-mute)]">
         <span>
           {label}
-          {required && <span className="ml-1 text-gold-300">*</span>}
+          {required && <span className="ml-1 text-[var(--color-navy)]">*</span>}
         </span>
-        {hint && <span className="text-cream-100/70">{hint}</span>}
+        {hint && <span className="text-[var(--color-ink-mute)]/75">{hint}</span>}
       </span>
       {children}
     </label>

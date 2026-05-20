@@ -2,44 +2,49 @@ import Link from "next/link";
 import * as React from "react";
 import { cn } from "@/lib/cn";
 
-type ButtonProps = {
-  variant?: "primary" | "ghost" | "outline";
-  size?: "md" | "lg";
+type Variant = "filled" | "outline" | "ghost" | "outline-light";
+type Size = "sm" | "md" | "lg";
+
+type Props = {
+  variant?: Variant;
+  size?: Size;
   href?: string;
   className?: string;
   children: React.ReactNode;
 } & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "className" | "children">;
 
 const base =
-  "inline-flex items-center justify-center gap-2 font-medium tracking-wide " +
-  "transition-all duration-300 ease-[var(--ease-soft)] " +
-  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-cream-50 " +
+  "btn-pill " +
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-navy)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bone)] " +
   "disabled:pointer-events-none disabled:opacity-50";
 
-const variants = {
-  primary:
-    "bg-ink-900 text-cream-50 hover:bg-ink-700 active:bg-ink-950",
+const variants: Record<Variant, string> = {
+  filled:
+    "bg-[var(--color-navy)] text-white hover:bg-[var(--color-navy-2)] active:bg-[var(--color-navy)]",
   outline:
-    "border border-ink-900 text-ink-900 bg-transparent hover:bg-ink-900 hover:text-cream-50",
+    "border border-[var(--color-navy)] text-[var(--color-navy)] bg-transparent hover:bg-[var(--color-navy)] hover:text-white",
+  // Light text outline for use on dark hero
+  "outline-light":
+    "border border-white/85 text-white bg-transparent hover:bg-white hover:text-[var(--color-navy)]",
   ghost:
-    "text-ink-900 hover:text-gold-600",
-} as const;
+    "text-[var(--color-navy)] hover:text-[var(--color-navy-2)]",
+};
 
-const sizes = {
-  md: "h-11 px-6 text-sm",
-  lg: "h-14 px-8 text-[15px]",
-} as const;
+const sizes: Record<Size, string> = {
+  sm: "h-10 px-5 text-[13px]",
+  md: "h-12 px-7 text-[14px]",
+  lg: "h-[60px] px-9 text-[15px]",
+};
 
 export function Button({
-  variant = "primary",
-  size = "md",
+  variant = "filled",
+  size = "lg",
   href,
   className,
   children,
   ...rest
-}: ButtonProps) {
+}: Props) {
   const classes = cn(base, variants[variant], sizes[size], className);
-
   if (href) {
     const external = href.startsWith("http");
     return external ? (
