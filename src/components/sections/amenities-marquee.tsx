@@ -1,8 +1,9 @@
+import * as React from "react";
 import { Reveal } from "@/components/motion/reveal";
 import type { Amenity } from "@/types/content";
 
 // Icon glyphs (line-art, neutral)
-const icons: Record<string, JSX.Element> = {
+const icons: Record<string, React.ReactNode> = {
   default: (
     <svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="1.25">
       <circle cx="16" cy="16" r="10" />
@@ -11,7 +12,7 @@ const icons: Record<string, JSX.Element> = {
   ),
 };
 
-const iconFor = (name: string): JSX.Element => {
+const iconFor = (name: string): React.ReactNode => {
   // simple mapping based on name keyword
   const n = name.toLowerCase();
   if (n.includes("room") || n.includes("bed")) return (
